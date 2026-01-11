@@ -10,70 +10,73 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2022_08_19_212767) do
-  create_table "customer_stats_profiles", charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[8.1].define(version: 2022_08_19_212767) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "customer_stats_profiles", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.integer "customer_id"
     t.text "data"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", charset: "utf8mb3", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "name"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "films", charset: "utf8mb3", force: :cascade do |t|
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "language_id"
+  create_table "films", force: :cascade do |t|
     t.text "big_text_column"
-  end
-
-  create_table "followings", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
     t.datetime "created_at", null: false
+    t.integer "language_id"
+    t.string "title"
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventories", charset: "utf8mb3", force: :cascade do |t|
+  create_table "followings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "followed_id"
+    t.integer "follower_id"
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inventories", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.integer "film_id"
     t.integer "store_id"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "languages", charset: "utf8mb3", force: :cascade do |t|
+  create_table "languages", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "name"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "rentals", charset: "utf8mb3", force: :cascade do |t|
-    t.integer "inventory_id"
+  create_table "rentals", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.integer "customer_id"
+    t.integer "inventory_id"
     t.datetime "rental_date"
     t.datetime "returnal_date"
-    t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "stores", charset: "utf8mb3", force: :cascade do |t|
+  create_table "stores", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "name"
+    t.datetime "updated_at", null: false
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

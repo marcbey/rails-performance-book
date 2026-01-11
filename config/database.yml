@@ -17,14 +17,14 @@ mysql: &mysql
   username: root
 
 development:
-  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*postgres" %>
   database: moviestore_development
   cache:
-    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*postgres" %>
     database: moviestore_development_cache
     migration_paths: db/cache_migrate
   queue:
-    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*postgres" %>
     database: moviestore_development_queue
     migration_paths: db/queue_migrate
 
@@ -32,9 +32,9 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*postgres" %>
   database: moviestore_test
 
 production:
-  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*postgres" %>
   database: moviestore_production
