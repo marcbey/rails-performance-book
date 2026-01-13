@@ -2,15 +2,9 @@
   <%= @customer.name %>
 </h1>
 <div class="timeline">
-    <h2>| Rentals</h2>
-    <%= "#{@customer.rentals_count} rentals" %>
+  <h2>| Rentals</h2>
+  <%= "#{@customer.rentals_count} rentals" %>
   <table>
-    <% @rentals.each do |rental| %>
-    <tr>
-      <td><%= rental.inventory.film.title %></td>
-      <td><%= rental.rental_date %></td>
-      <td><%= rental.returnal_date %></td>
-    </tr>
-  <% end %>
+    <%= render @rentals %>
   </table>
 </div>
